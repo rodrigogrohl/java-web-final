@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/fiap.xhtml">
+   <ui:define name="content">
+   <p:panel id="panelCadastroCurso" header="Cadastrar Curso" footer="Todos os campos são obrigatórios" style="margin-bottom:20px">
+   
+      <p:outputLabel rendered="#{not empty userSessionBean.escolaSelecionada}">
+      	<h2>#{userSessionBean.escolaSelecionada.nome}</h2>
+      	<p>Possui #{userSessionBean.escolaSelecionada.totalCursos} cursos dinsponíveis.</p>
+      </p:outputLabel>
+      
+      <h:form id="cadastroCurso">
+         <h:panelGrid columns="3" columnClasses="titleCell">
+            <h:outputLabel for="name" value="Nome do Curso: "/>
+            <h:inputText id="name" value="#{cursoBean.curso.nome}" size="80"/>
+            <h:message for="name" errorClass="invalid"/>
+         </h:panelGrid>
+
+         <p>
+            <h:panelGrid columns="2">
+            	<p:commandButton id="register" ajax="false" actionListener="#{cursoBean.cadastar}" value="Registar"/>
+            	<h:messages styleClass="messages" errorClass="invalid" infoClass="valid" warnClass="warning"
+                           globalOnly="true"/>
+            </h:panelGrid>
+         </p>
+      </h:form>
+	</p:panel>
+	
+	<p:panel id="panelListaCursos" header="Cursos Cadastrados" style="margin-bottom:20px">
+      <h2>Cursos Disponíveis</h2>
+      <h:panelGroup rendered="#{empty cursoBean.lista}">
+         <em>Sem Cursos Cadastrados.</em>
+      </h:panelGroup>
+      <p:dataTable var="_curso" value="#{cursoBean.lista}" rendered="#{not empty cursoBean.lista}">
+         <p:column width="20%">
+            <f:facet name="header">Id</f:facet>
+                #{_curso.id}
+         </p:column>
+         <p:column>
+            <f:facet name="header">Curso</f:facet>
+                #{_curso.nome}
+         </p:column>
+			<p:column width="40%" style="text-align:center;">
+				<h:form>
+					<p:commandButton ajax="false" action="disciplina.jsf" value="Inserir Disciplinas">
+						<f:setPropertyActionListener target="#{userSessionBean.cursoSelecionado}" value="#{_curso}" />
+					</p:commandButton>
+					<p:commandButton ajax="false" action="aluno.jsf" value="Inserir Alunos">
+						<f:setPropertyActionListener target="#{userSessionBean.cursoSelected}" value="#{_curso}" />
+					</p:commandButton>
+				</h:form>
+			</p:column>
+
+      </p:dataTable>
+	</p:panel>
+   </ui:define>
+</ui:composition>

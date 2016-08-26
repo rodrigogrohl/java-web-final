@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/fiap.xhtml">
+	<ui:define name="content">
+
+		<p:panel id="panelCadastroCurso" header="Cadastrar Curso"
+			footer="Todos os campos são obrigatórios" style="margin-bottom:20px">
+
+			<h2>#{userSessionBean.escolaSelecionada.nome}</h2>
+
+
+			<h:form id="cadastroProfessor">
+				<h:panelGrid columns="3" columnClasses="titleCell">
+					<h:outputLabel for="name" value="Nome do Professor: " />
+					<h:inputText id="name" value="#{professorBean.professor.nome}"
+						size="80" />
+					<h:message for="name" errorClass="invalid" />
+				</h:panelGrid>
+
+				<p>
+					<h:panelGrid columns="2">
+						<p:commandButton id="register" ajax="false"
+							actionListener="#{professorBean.cadastar}" value="Registar" />
+						<h:messages styleClass="messages" errorClass="invalid"
+							infoClass="valid" warnClass="warning" globalOnly="true" />
+					</h:panelGrid>
+				</p>
+			</h:form>
+		</p:panel>
+
+		<p:panel id="panelListaProfessores" header="Professores Cadastrados"
+			style="margin-bottom:20px">
+			<h2>Professores Cadastrados</h2>
+			<h:panelGroup rendered="#{empty professorBean.lista}">
+				<em>Sem Professores Cadastrados.</em>
+			</h:panelGroup>
+			<p:dataTable var="_professor" value="#{professorBean.lista}"
+				rendered="#{not empty professorBean.lista}">
+				<p:column width="20%">
+					<f:facet name="header">Id</f:facet>
+                #{_professor.id}
+         </p:column>
+				<p:column>
+					<f:facet name="header">Professor</f:facet>
+                #{_professor.nome}
+         </p:column>
+
+			</p:dataTable>
+		</p:panel>
+		
+	</ui:define>
+	
+</ui:composition>

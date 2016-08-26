@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/fiap.xhtml">
+   <ui:define name="content">
+   <p:panel id="panelCadastroDisciplina" header="Cadastrar Disciplina" footer="Todos os campos são obrigatórios" style="margin-bottom:20px">
+   
+   	<!--  TITULO DA PAGINA  -->
+   	<p:outputLabel rendered="#{not empty userSessionBean.cursoSelecionado}">
+      	<h2>#{userSessionBean.escolaSelecionada.nome} > #{userSessionBean.cursoSelecionado.nome}</h2>
+      	<p>Possui #{userSessionBean.cursoSelecionado.totalDisciplinas} disciplinas cadastradas.</p>
+    </p:outputLabel>
+
+	<!-- FORMULARIO CADASTRO -->
+      <h:form id="cadastroDisciplina">
+         <h:panelGrid columns="3" columnClasses="titleCell">
+            <h:outputLabel for="name" value="Nome do Disciplina: "/>
+            <h:inputText id="name" value="#{disciplinaBean.disciplina.nome}" size="80"/>
+            <h:message for="name" errorClass="invalid"/>
+         </h:panelGrid>
+
+         <p>
+            <h:panelGrid columns="2">
+            	<p:commandButton id="register" ajax="false" actionListener="#{disciplinaBean.cadastrar}" value="Registar"/>
+            	<h:messages styleClass="messages" errorClass="invalid" infoClass="valid" warnClass="warning"
+                           globalOnly="true"/>
+            </h:panelGrid>
+         </p>
+      </h:form>
+	</p:panel>
+	
+	<!-- LISTA JA CADASTRADA  -->
+	<p:panel id="panelListaCursos" header="Disciplinas Cadastrados" style="margin-bottom:20px">
+      <h2>Disciplinas Disponíveis</h2>
+      <h:panelGroup rendered="#{empty cursoBean.lista}">
+         <em>Sem Disciplinas Cadastrados.</em>
+      </h:panelGroup>
+      <p:dataTable var="_disciplina" value="#{disciplinaBean.lista}" rendered="#{not empty disciplinaBean.lista}">
+         <p:column width="20%">
+            <f:facet name="header">Id</f:facet>
+                #{_disciplina.id}
+         </p:column>
+         <p:column>
+            <f:facet name="header">Nome da Disciplina</f:facet>
+                #{_disciplina.nome}
+         </p:column>
+
+      </p:dataTable>
+	</p:panel>
+   </ui:define>
+</ui:composition>

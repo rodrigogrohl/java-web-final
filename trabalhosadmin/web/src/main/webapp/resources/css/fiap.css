@@ -1,0 +1,18 @@
+/*
+ *	REFERENCIA: 
+ *   https://www.materialui.co/colors
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E8EAF6;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 0.8em;
+  color:##37474F;
+}
+
+.strong-background {
+	background-color: #37474F;
+	color: #D4E157;
+}

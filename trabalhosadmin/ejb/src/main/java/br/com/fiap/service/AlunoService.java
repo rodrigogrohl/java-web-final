@@ -1,0 +1,33 @@
+package br.com.fiap.service;
+
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import br.com.fiap.data.AlunoRepository;
+import br.com.fiap.model.Aluno;
+
+@Stateless
+public class AlunoService {
+	
+	@Inject
+	private AlunoRepository repository;
+	
+	public void cadastrar(final Aluno aluno){
+		repository.adicionar(aluno);
+	}
+	
+	public void atualizar(final Aluno aluno){
+		repository.atualizar(aluno);
+	}
+	
+	public List<Aluno> listar() {
+		return repository.listar();
+	}
+	
+	public Aluno buscar(final Integer id) {
+		return repository.buscar(id);
+	}
+	
+}

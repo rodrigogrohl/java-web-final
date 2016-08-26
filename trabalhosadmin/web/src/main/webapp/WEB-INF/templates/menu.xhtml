@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui">
+   <h:form>
+ 	
+	    <p:menu>
+	        <p:submenu label="Cadastros">
+	            <p:menuitem value="Escola" ajax="false" action="escola.jsf" icon="ui-icon-home" />
+	            <p:menuitem value="Curso" action="curso.jsf" ajax="false" icon="ui-icon-suitcase" rendered="#{not empty userSessionBean.escolaSelecionada}"/>
+	            <p:menuitem value="Professor" action="professor.jsf" ajax="false" icon="ui-icon-contact" rendered="#{not empty userSessionBean.escolaSelecionada}"/>
+	            <p:menuitem value="Disciplina" action="disciplina.jsf" ajax="false" icon="ui-icon-folder-open" rendered="#{not empty userSessionBean.cursoSelecionado}"/>
+	            <p:menuitem value="Aluno" action="aluno.jsf" ajax="false" icon="ui-icon-person"/>
+	            
+	        </p:submenu>
+	        <p:submenu label="Non-Ajax">
+	            <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+	        </p:submenu>
+	        <p:submenu label="Navigations">
+	            <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+	            
+	        </p:submenu>
+	    </p:menu>   
+   </h:form>
+</ui:composition>
