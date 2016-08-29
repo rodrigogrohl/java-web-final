@@ -13,15 +13,27 @@
       	<h2>#{userSessionBean.escolaSelecionada.nome} > #{userSessionBean.cursoSelecionado.nome}</h2>
       	<p>Possui #{userSessionBean.cursoSelecionado.totalDisciplinas} disciplinas cadastradas.</p>
     </p:outputLabel>
+    
+   	<!--  CADASTRAR PROFESSORES  -->
+   	<p:outputLabel rendered="#{empty disciplinaBean.professores}">
+      	<h2>Esta instituição não possui professores cadastrados.</h2>
+      	<p>Acesse o Menu 'Professor' para inserir os registros.</p>
+    </p:outputLabel>
 
 	<!-- FORMULARIO CADASTRO -->
-      <h:form id="cadastroDisciplina">
+      <h:form id="cadastroDisciplina" rendered="#{not empty disciplinaBean.professores}">
          <h:panelGrid columns="3" columnClasses="titleCell">
             <h:outputLabel for="name" value="Nome do Disciplina: "/>
             <h:inputText id="name" value="#{disciplinaBean.disciplina.nome}" size="80"/>
             <h:message for="name" errorClass="invalid"/>
+            
+            <h:outputLabel for="professor" value="Professor Responsável: "/>
+	        <p:selectOneMenu id="professorSelector" value="#{disciplinaBean.idProfessorSelecionado}">
+	            <f:selectItems value="#{disciplinaBean.professores}" itemLabel="#{professor.nome}"  itemValue="#{professor.id}" var="professor"/>
+	        </p:selectOneMenu>
+	        <h:message for="professor" errorClass="invalid"/>
          </h:panelGrid>
-
+         
          <p>
             <h:panelGrid columns="2">
             	<p:commandButton id="register" ajax="false" actionListener="#{disciplinaBean.cadastrar}" value="Registar"/>
@@ -35,7 +47,7 @@
 	<!-- LISTA JA CADASTRADA  -->
 	<p:panel id="panelListaCursos" header="Disciplinas Cadastrados" style="margin-bottom:20px">
       <h2>Disciplinas Disponíveis</h2>
-      <h:panelGroup rendered="#{empty cursoBean.lista}">
+      <h:panelGroup rendered="#{empty disciplinaBean.lista}">
          <em>Sem Disciplinas Cadastrados.</em>
       </h:panelGroup>
       <p:dataTable var="_disciplina" value="#{disciplinaBean.lista}" rendered="#{not empty disciplinaBean.lista}">
@@ -47,7 +59,10 @@
             <f:facet name="header">Nome da Disciplina</f:facet>
                 #{_disciplina.nome}
          </p:column>
-
+         <p:column>
+            <f:facet name="header">Professor</f:facet>
+                #{_disciplina.professor.nome}
+         </p:column>
       </p:dataTable>
 	</p:panel>
    </ui:define>

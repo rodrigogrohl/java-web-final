@@ -8,7 +8,9 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import br.com.fiap.model.Aluno;
 import br.com.fiap.model.Curso;
+import br.com.fiap.model.Disciplina;
 import br.com.fiap.model.Escola;
 
 /**
@@ -25,14 +27,18 @@ public class UserSessionController implements Serializable {
 	private Escola escolaSelecionada;
 
 	private Curso cursoSelecionado;
-	
+
+	private Aluno alunoSelecionado;
+
+	private Disciplina disciplinaSelecionada;
+
 	public Escola getEscolaSelecionada() {
 		return escolaSelecionada;
 	}
 
 	public void setEscolaSelecionada(Escola escolaSelecionada) {
 		this.escolaSelecionada = escolaSelecionada;
-		
+
 	}
 
 	public Curso getCursoSelecionado() {
@@ -41,6 +47,22 @@ public class UserSessionController implements Serializable {
 
 	public void setCursoSelecionado(Curso cursoSelecionado) {
 		this.cursoSelecionado = cursoSelecionado;
+	}
+
+	public Aluno getAlunoSelecionado() {
+		return alunoSelecionado;
+	}
+
+	public void setAlunoSelecionado(Aluno alunoSelecionado) {
+		this.alunoSelecionado = alunoSelecionado;
+	}
+
+	public Disciplina getDisciplinaSelecionada() {
+		return disciplinaSelecionada;
+	}
+
+	public void setDisciplinaSelecionada(Disciplina disciplinaSelecionada) {
+		this.disciplinaSelecionada = disciplinaSelecionada;
 	}
 
 }

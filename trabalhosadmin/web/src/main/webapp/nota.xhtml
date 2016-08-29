@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/fiap.xhtml">
+	<ui:define name="content">
+		<p:panel id="panelCadastroNota" header="Cadastrar Nota"
+			footer="Todos os campos são obrigatórios" style="margin-bottom:20px">
+
+			<!--  TITULO DA PAGINA  -->
+			<p:outputLabel
+				rendered="#{not empty userSessionBean.cursoSelecionado}">
+				<h2>#{userSessionBean.escolaSelecionada.nome} >
+					#{userSessionBean.cursoSelecionado.nome} >
+					#{userSessionBean.disciplinaSelecionad.nome}
+					</h2>
+
+			</p:outputLabel>
+
+			<h:form>
+				<p:growl id="msgs" showDetail="true" />
+
+				<p:dataTable id="notas" var="nota" value="#{notaBean.lista}"
+					editable="true" style="margin-bottom:20px">
+					<f:facet name="header">
+			           Row Editing
+			       </f:facet>
+
+					<p:ajax event="rowEdit" listener="#{notaBean.onRowEdit}"
+						update=":form:msgs" />
+					<p:ajax event="rowEditCancel" listener="#{notaBean.onRowCancel}"
+						update=":form:msgs" />
+
+					<p:column headerText="Projeto 1 (30%)">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.projetoUm}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{car.id}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Atividade Prática (30%)">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.atividadePratica}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{nota.atividadePratica}" style="width:100%" label="Atividade Pratica" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Projeto 2 (%40)">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.atividadePratica}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{nota.atividadePratica}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+
+
+		</p:panel>
+
+	</ui:define>
+</ui:composition>

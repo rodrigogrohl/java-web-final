@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.fiap.data.AlunoRepository;
 import br.com.fiap.model.Aluno;
+import br.com.fiap.model.Curso;
 
 @Stateless
 public class AlunoService {
@@ -28,6 +29,10 @@ public class AlunoService {
 	
 	public Aluno buscar(final Integer id) {
 		return repository.buscar(id);
+	}
+
+	public List<Aluno> listar(Curso cursoSelecionado) {
+		return repository.listar(cursoSelecionado);
 	}
 	
 }

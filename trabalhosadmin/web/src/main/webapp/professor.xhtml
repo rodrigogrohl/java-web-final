@@ -7,7 +7,7 @@
 	template="/WEB-INF/templates/fiap.xhtml">
 	<ui:define name="content">
 
-		<p:panel id="panelCadastroCurso" header="Cadastrar Curso"
+		<p:panel id="panelCadastroProfessor" header="Cadastrar Professor"
 			footer="Todos os campos são obrigatórios" style="margin-bottom:20px">
 
 			<h2>#{userSessionBean.escolaSelecionada.nome}</h2>
@@ -40,15 +40,18 @@
 			</h:panelGroup>
 			<p:dataTable var="_professor" value="#{professorBean.lista}"
 				rendered="#{not empty professorBean.lista}">
-				<p:column width="20%">
+			<p:column width="20%">
 					<f:facet name="header">Id</f:facet>
                 #{_professor.id}
+         	</p:column>
+			<p:column>
+				<f:facet name="header">Professor</f:facet>
+               #{_professor.nome}
+        	 </p:column>
+			<p:column>
+				<f:facet name="header">Escola</f:facet>
+               #{_professor.escola.nome}
          </p:column>
-				<p:column>
-					<f:facet name="header">Professor</f:facet>
-                #{_professor.nome}
-         </p:column>
-
 			</p:dataTable>
 		</p:panel>
 		

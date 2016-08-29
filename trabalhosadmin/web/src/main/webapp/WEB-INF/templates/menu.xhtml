@@ -12,7 +12,7 @@
 	            <p:menuitem value="Curso" action="curso.jsf" ajax="false" icon="ui-icon-suitcase" rendered="#{not empty userSessionBean.escolaSelecionada}"/>
 	            <p:menuitem value="Professor" action="professor.jsf" ajax="false" icon="ui-icon-contact" rendered="#{not empty userSessionBean.escolaSelecionada}"/>
 	            <p:menuitem value="Disciplina" action="disciplina.jsf" ajax="false" icon="ui-icon-folder-open" rendered="#{not empty userSessionBean.cursoSelecionado}"/>
-	            <p:menuitem value="Aluno" action="aluno.jsf" ajax="false" icon="ui-icon-person"/>
+	            <p:menuitem value="Aluno" action="aluno.jsf" ajax="false" icon="ui-icon-person" rendered="#{not empty userSessionBean.cursoSelecionado}"/>
 	            
 	        </p:submenu>
 	        <p:submenu label="Non-Ajax">

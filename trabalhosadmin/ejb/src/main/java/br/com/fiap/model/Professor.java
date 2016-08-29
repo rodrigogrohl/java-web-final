@@ -1,6 +1,7 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,11 @@ public class Professor implements Serializable {
 	private String nome;
 	
 	@ManyToOne
+	@NotNull
 	private Escola escola;
+	
+	@OneToMany
+	private List<Disciplina> disciplinas;
 
 	public Integer getId() {
 		return id;
@@ -43,6 +48,23 @@ public class Professor implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
+	
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	@Override

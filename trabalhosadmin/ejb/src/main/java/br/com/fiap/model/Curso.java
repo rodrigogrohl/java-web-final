@@ -29,10 +29,10 @@ public class Curso {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Escola escola;
 
-	@OneToMany
+	@OneToMany(mappedBy = "curso")
 	private List<Disciplina> disciplinas;
 
-	@ManyToMany
+	@ManyToMany(mappedBy="cursos")
 	private List<Aluno> alunos;
 
 	public int getTotalDisciplinas() {

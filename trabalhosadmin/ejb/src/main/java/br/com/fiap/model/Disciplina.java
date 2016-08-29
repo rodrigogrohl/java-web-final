@@ -7,10 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 
 @Entity
 @Table(name = "DISCIPLINA")
@@ -25,10 +24,12 @@ public class Disciplina implements Serializable {
 	@NotNull
 	@Column
 	private String nome;
-	
-	@OneToOne
+
+	@ManyToOne(optional = false)
 	private Curso curso;
 
+	@ManyToOne(optional = false)
+	private Professor professor;
 
 	public Integer getId() {
 		return id;
@@ -54,11 +55,17 @@ public class Disciplina implements Serializable {
 		this.curso = curso;
 	}
 
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@Override
 	public String toString() {
 		return "Disciplina [id=" + id + ", nome=" + nome + ", curso=" + curso + "]";
 	}
-	
-	
 
 }
