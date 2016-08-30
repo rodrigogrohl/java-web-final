@@ -1,14 +1,13 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,13 +20,13 @@ public class Aluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotNull
 	@Column
 	private String nome;
-	
-	@ManyToMany
-	private List<Curso> cursos;
+
+	@ManyToOne
+	private Curso curso;
 
 	public Integer getId() {
 		return id;
@@ -47,7 +46,16 @@ public class Aluno implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aluno [id=" + id + ", nome=" + nome + ", cursos=" + cursos + "]";
+		return "Aluno [id=" + id + ", nome=" + nome + ", curso=" + curso + "]";
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 	
+
 }

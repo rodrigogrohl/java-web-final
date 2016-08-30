@@ -22,7 +22,7 @@
 				<h:panelGrid columns="3" columnClasses="titleCell">
 					<h:outputLabel for="name" value="Nome do Aluno: " />
 					<h:inputText id="name" value="#{alunoBean.aluno.nome}"
-						size="80" />
+						size="60" />
 					<h:message for="name" errorClass="invalid" />
 				</h:panelGrid>
 
@@ -56,7 +56,7 @@
          </p:column>
 			<p:column width="40%" style="text-align:center;">
 				<h:form>
-					<p:commandButton ajax="false" action="curso.jsf" value="Cadastro de Notas">
+					<p:commandButton ajax="false" action="nota.jsf" value="Cadastro de Notas">
 						<f:setPropertyActionListener target="#{userSessionBean.alunoSelecionado}" value="#{_aluno}" />
 					</p:commandButton>
 				</h:form>

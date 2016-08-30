@@ -24,7 +24,7 @@
       <h:form id="cadastroDisciplina" rendered="#{not empty disciplinaBean.professores}">
          <h:panelGrid columns="3" columnClasses="titleCell">
             <h:outputLabel for="name" value="Nome do Disciplina: "/>
-            <h:inputText id="name" value="#{disciplinaBean.disciplina.nome}" size="80"/>
+            <h:inputText id="name" value="#{disciplinaBean.disciplina.nome}" size="60"/>
             <h:message for="name" errorClass="invalid"/>
             
             <h:outputLabel for="professor" value="Professor Responsável: "/>

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -28,8 +27,12 @@ public class AlunoController implements Serializable {
 	private UserSessionController userSession;
 	
 	public String cadastrar() {
+		aluno.setCurso(userSession.getCursoSelecionado());
 		service.cadastrar(aluno);
-		getLista().add(aluno);
+		
+		lista = null;
+		getLista();
+		
 		aluno = new Aluno();
 		return "aluno.jsf";
 	}

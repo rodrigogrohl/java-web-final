@@ -1,5 +1,6 @@
 package br.com.fiap.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CURSO")
-public class Curso {
+public class Curso implements Serializable {
+
+	private static final long serialVersionUID = 9081403274797518200L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +35,7 @@ public class Curso {
 	@OneToMany(mappedBy = "curso")
 	private List<Disciplina> disciplinas;
 
-	@ManyToMany(mappedBy="cursos")
+	@ManyToMany //(mappedBy="curso")
 	private List<Aluno> alunos;
 
 	public int getTotalDisciplinas() {
@@ -82,8 +85,7 @@ public class Curso {
 
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", escola=" + escola + ", disciplinas=" + disciplinas
-				+ ", alunos=" + alunos + "]";
+		return "Curso [id=" + id + ", nome=" + nome + ", escola=" + escola;
 	}
 
 	@Override

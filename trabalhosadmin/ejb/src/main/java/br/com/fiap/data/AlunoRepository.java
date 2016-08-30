@@ -23,9 +23,9 @@ public class AlunoRepository extends GenericDAO<Aluno> {
 	}
 
 	public List<Aluno> listar(Curso cursoSelecionado) {
-		TypedQuery<Aluno> query = em.createQuery("SELECT a FROM Aluno a JOIN a.cursos c WHERE c.id = :id", Aluno.class);
+		TypedQuery<Aluno> query = em.createQuery("SELECT a FROM Aluno a JOIN a.curso c WHERE c.id = :id", Aluno.class);
 		query.setParameter("id", cursoSelecionado.getId());
 		return query.getResultList();
 	}
-	
+
 }

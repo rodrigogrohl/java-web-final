@@ -13,15 +13,8 @@
 	            <p:menuitem value="Professor" action="professor.jsf" ajax="false" icon="ui-icon-contact" rendered="#{not empty userSessionBean.escolaSelecionada}"/>
 	            <p:menuitem value="Disciplina" action="disciplina.jsf" ajax="false" icon="ui-icon-folder-open" rendered="#{not empty userSessionBean.cursoSelecionado}"/>
 	            <p:menuitem value="Aluno" action="aluno.jsf" ajax="false" icon="ui-icon-person" rendered="#{not empty userSessionBean.cursoSelecionado}"/>
-	            
 	        </p:submenu>
-	        <p:submenu label="Non-Ajax">
-	            <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
-	        </p:submenu>
-	        <p:submenu label="Navigations">
-	            <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
-	            
-	        </p:submenu>
+
 	    </p:menu>   
    </h:form>
 </ui:composition>

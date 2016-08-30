@@ -8,7 +8,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.TypedQuery;
 
-import br.com.fiap.model.Disciplina;
+import br.com.fiap.model.Aluno;
 import br.com.fiap.model.Nota;
 
 /**
@@ -22,9 +22,10 @@ public class NotaRepository extends GenericDAO<Nota> {
 		super(Nota.class);
 	}
 
-	public List<Nota> listar(Disciplina disciplina) {
-		TypedQuery<Nota> query = em.createQuery("SELECT n FROM Nota n JOIN n.disciplina d WHERE d.id = :id", Nota.class);
-		query.setParameter("id", disciplina.getId());
+	public List<Nota> listar(Aluno aluno) {
+		TypedQuery<Nota> query = em.createQuery("SELECT n FROM Nota n JOIN n.aluno a WHERE a.id = :alunoId", Nota.class);
+		// query.setParameter("disciplinaId", disciplina.getId());
+		query.setParameter("alunoId", aluno.getId());
 		return query.getResultList();
 	}
 	
