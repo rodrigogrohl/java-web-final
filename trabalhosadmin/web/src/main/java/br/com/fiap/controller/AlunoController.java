@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.fiap.model.Aluno;
+import br.com.fiap.model.TipoDeAcesso;
 import br.com.fiap.service.AlunoService;
 
 @ConversationScoped
@@ -29,6 +29,7 @@ public class AlunoController implements Serializable {
 	
 	public String cadastrar() {
 		service.cadastrar(aluno);
+		aluno.setTipoDeAcesso(TipoDeAcesso.ALUNO);
 		getLista().add(aluno);
 		aluno = new Aluno();
 		return "aluno.jsf";

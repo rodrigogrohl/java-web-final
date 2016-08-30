@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.fiap.model.Professor;
+import br.com.fiap.model.TipoDeAcesso;
 import br.com.fiap.service.ProfessorService;
 
 /**
@@ -48,6 +49,7 @@ public class ProfessorController implements Serializable {
 
 	public String cadastar() {
 		professor.setEscola(userSession.getEscolaSelecionada());
+		professor.setTipoDeAcesso(TipoDeAcesso.PROFESSOR);
 		service.cadastrar(professor);
 		//getLista().add(professor);
 		lista = null;

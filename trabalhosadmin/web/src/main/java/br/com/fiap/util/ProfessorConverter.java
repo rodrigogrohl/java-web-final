@@ -9,7 +9,6 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.ApplicationPath;
 
 import br.com.fiap.model.Professor;
 import br.com.fiap.service.ProfessorService;

@@ -20,6 +20,16 @@
 						size="80" />
 					<h:message for="name" errorClass="invalid" />
 				</h:panelGrid>
+		         <h:panelGrid columns="3" columnClasses="titleCell">
+		            <h:outputLabel for="username" value="Usuario:"/>
+		            <h:inputText id="username" value="#{professorBean.professor.username}" />
+		            <h:message for="username" errorClass="invalid"/>
+		         </h:panelGrid>	    
+		         <h:panelGrid columns="3" columnClasses="titleCell">
+		            <h:outputLabel for="password" value="Senha:"/>
+		            <h:inputSecret id="password" value="#{professorBean.professor.password}"/>
+		            <h:message for="username" errorClass="invalid"/>
+		         </h:panelGrid>
 
 				<p>
 					<h:panelGrid columns="2">
