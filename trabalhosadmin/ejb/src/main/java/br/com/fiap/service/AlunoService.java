@@ -15,8 +15,12 @@ public class AlunoService {
 	@Inject
 	private AlunoRepository repository;
 	
+	@Inject
+	private NotaService notaService;
+	
 	public void cadastrar(final Aluno aluno){
 		repository.adicionar(aluno);
+		notaService.criaMatrizNotas(aluno);
 	}
 	
 	public void atualizar(final Aluno aluno){

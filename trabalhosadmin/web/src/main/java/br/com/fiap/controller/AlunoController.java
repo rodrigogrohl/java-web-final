@@ -28,9 +28,12 @@ public class AlunoController implements Serializable {
 	private UserSessionController userSession;
 	
 	public String cadastrar() {
-		service.cadastrar(aluno);
+		aluno.setCurso(userSession.getCursoSelecionado());
 		aluno.setTipoDeAcesso(TipoDeAcesso.ALUNO);
-		getLista().add(aluno);
+		service.cadastrar(aluno);		
+		lista = null;
+		getLista();
+
 		aluno = new Aluno();
 		return "aluno.jsf";
 	}

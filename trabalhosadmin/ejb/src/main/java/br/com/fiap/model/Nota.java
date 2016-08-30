@@ -13,7 +13,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Entity
-@Table(name = "ALUNO")
+@Table(name = "NOTA")
 public class Nota implements Serializable {
 
 	private static final long serialVersionUID = -8766707198282207106L;
@@ -54,6 +54,16 @@ public class Nota implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getStatus() {
+		if(projetoUm == null || projetoDois == null || atividade == null)
+			return "Em avaliação";
+		
+		if(isAprovado())
+			return "Aprovado";
+		
+		return "Reprovado";
 	}
 
 	public Integer getId() {

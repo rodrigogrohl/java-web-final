@@ -13,19 +13,19 @@
 			<p:outputLabel
 				rendered="#{not empty userSessionBean.cursoSelecionado}">
 				<h2>#{userSessionBean.escolaSelecionada.nome} >
-					#{userSessionBean.cursoSelecionado.nome} >
-					#{userSessionBean.disciplinaSelecionad.nome}
+					#{userSessionBean.cursoSelecionado.nome}
 					</h2>
 
 			</p:outputLabel>
 
-			<h:form>
+			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
 
 				<p:dataTable id="notas" var="nota" value="#{notaBean.lista}"
 					editable="true" style="margin-bottom:20px">
+					
 					<f:facet name="header">
-			           Row Editing
+			           <h:outputText value="#{userSessionBean.alunoSelecionado.nome}" />
 			       </f:facet>
 
 					<p:ajax event="rowEdit" listener="#{notaBean.onRowEdit}"
@@ -33,13 +33,17 @@
 					<p:ajax event="rowEditCancel" listener="#{notaBean.onRowCancel}"
 						update=":form:msgs" />
 
+					<p:column headerText="Disciplina">
+						<h:outputText value="#{nota.disciplina.nome}" />
+					</p:column>
+					
 					<p:column headerText="Projeto 1 (30%)">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{nota.projetoUm}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput" value="#{car.id}"
+								<p:inputText id="projetoUm" value="#{nota.projetoUm}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -48,10 +52,11 @@
 					<p:column headerText="Atividade Prática (30%)">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{nota.atividadePratica}" />
+								<h:outputText value="#{nota.atividade}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{nota.atividadePratica}" style="width:100%" label="Atividade Pratica" />
+								<p:inputText id="atividade" value="#{nota.atividade}" 
+								style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -59,23 +64,25 @@
 					<p:column headerText="Projeto 2 (%40)">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{nota.atividadePratica}" />
+								<h:outputText value="#{nota.projetoDois}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput" value="#{nota.atividadePratica}"
+								<p:inputText id="projetoDois" value="#{nota.projetoDois}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
 
+					<p:column headerText="Disciplina">
+						<h:outputText value="#{nota.status}" />
+					</p:column>
+					
 					<p:column style="width:32px">
 						<p:rowEditor />
 					</p:column>
 				</p:dataTable>
 
 			</h:form>
-
-
 
 		</p:panel>
 

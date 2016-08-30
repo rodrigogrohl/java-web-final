@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import org.primefaces.event.RowEditEvent;
 import br.com.fiap.model.Nota;
 import br.com.fiap.service.NotaService;
 
-@SessionScoped
+@ConversationScoped
 @Named(value = "notaBean")
 public class NotaController implements Serializable {
 	
@@ -32,12 +32,15 @@ public class NotaController implements Serializable {
 	private UserSessionController userSession;
 	
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Nota Editada", ((Nota) event.getObject()).getId().toString());
+        nota = (Nota) event.getObject();
+        service.atualizar(nota);
+        
+        FacesMessage msg = new FacesMessage("Nota Editada", nota.getStatus());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
     public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edição Cancelada", ((Nota) event.getObject()).getId().toString());
+        FacesMessage msg = new FacesMessage("Edição Cancelada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
@@ -60,7 +63,7 @@ public class NotaController implements Serializable {
 
 	public List<Nota> getLista() {
 		if(lista == null)
-			this.lista = service.listar(userSession.getDisciplinaSelecionada());
+			this.lista = service.listar(userSession.getAlunoSelecionado());
 		
 		return lista;
 	}
